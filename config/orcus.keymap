@@ -26,6 +26,13 @@
                         bindings = <&mt RSHIFT ENTER>, <&kp DEL>;
                 };
 
+                td_ctl: tap_dance_ctrl_cmd {
+                        compatible = "zmk,behavior-tap-dance";
+                        #binding-cells = <0>;
+                        tapping-term-ms = <200>;
+                        bindings = <&kp LCTRL>, <&kp LGUI>;
+                };
+
                 lt_spc: layer_tap_space {
                         compatible = "zmk,behavior-hold-tap";
                         #binding-cells = <2>;
@@ -49,7 +56,7 @@ display-name = "BASE"                      ;
 // ┏━━━━━━━━━━━┣━━━━━━━━━━━┣━━━━━━━━━━━┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫━━━━━━━━━━━┓
 // ┃  td_lp    ┃     Z     ┃     X     ┃   C/COPY  ┃  V/PASTE  ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃   td_rp   ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃   LCTRL   ┃    LALT   ┃   SPACE   ┃   ┃    BSPC   ┃    RGUI   ┃    SYS    ┃
+//                                     ┃    LALT   ┃ CTRL/CMD  ┃   SPACE   ┃   ┃    BSPC   ┃    RGUI   ┃    SYS    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
@@ -57,7 +64,7 @@ display-name = "BASE"                      ;
                   &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P       
                   &kp A       &kp S       &kp D       &kp F       &kp G           &kp H       &kp J       &kp K       &kp L       &kp SEMI    
       &td_lp      &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp SLASH   &td_rp
-                                          &kp LCTRL   &kp LALT    &lt_spc NUM SPACE   &lt SYM BSPC &kp RGUI   &tog SYS   
+                                          &kp LALT    &td_ctl     &lt_spc NUM SPACE   &lt SYM BSPC &kp RGUI   &tog SYS   
                         >;
                 };
 
