@@ -26,64 +26,12 @@
                         bindings = <&mt RSHIFT ENTER>, <&kp DEL>;
                 };
 
-                // Define the macro for CTRL + C
-                macro_ctrl_c: ctrl_c_macro {
-                        compatible = "zmk,behavior-macro";
-                        label = "CTRL+C";
-                        #binding-cells = <0>;
-                        bindings = <&kp LCTRL &kp C>;
-                };
-
-                // Define the macro for CTRL + V
-                macro_ctrl_v: ctrl_v_macro {
-                        compatible = "zmk,behavior-macro";
-                        label = "CTRL+V";
-                        #binding-cells = <0>;
-                        bindings = <&kp LCTRL &kp V>;
-                };
-
-                // Define the macro for CMD + C
-                macro_ctrl_c_mac: ctrl_c_macro_mac {
-                        compatible = "zmk,behavior-macro";
-                        label = "CTRL+C";
-                        #binding-cells = <0>;
-                        bindings = <&kp LCMD &kp C>;
-                };
-
-                // Define the macro for CMD + V
-                macro_ctrl_v_mac: ctrl_v_macro_mac {
-                        compatible = "zmk,behavior-macro";
-                        label = "CTRL+V";
-                        #binding-cells = <0>;
-                        bindings = <&kp LCMD &kp V>;
-                };
-
-                c_cpy: c_copy {
-                        compatible = "zmk,behavior-tap-dance";
-                        #binding-cells = <0>;
-                        tapping-term-ms = <200>;
-                        bindings = <&kp C &macro_ctrl_c>;
-                };
-
-                v_pst: v_paste {
-                        compatible = "zmk,behavior-tap-dance";
-                        #binding-cells = <0>;
-                        tapping-term-ms = <200>;
-                        bindings = <&kp V &macro_ctrl_v>;
-                };
-
-                c_cpy_mac: c_copy_mac {
-                        compatible = "zmk,behavior-tap-dance";
-                        #binding-cells = <0>;
-                        tapping-term-ms = <200>;
-                        bindings = <&kp C &macro_ctrl_c_mac>;
-                };
-
-                v_pst_mac: v_paste_mac {
-                        compatible = "zmk,behavior-tap-dance";
-                        #binding-cells = <0>;
-                        tapping-term-ms = <200>;
-                        bindings = <&kp V &macro_ctrl_v_mac>;
+                lt_spc: layer_tap_space {
+                        compatible = "zmk,behavior-hold-tap";
+                        #binding-cells = <2>;
+                        flavor = "balanced";
+                        tapping-term-ms = <180>;
+                        bindings = <&mo>, <&kp>;
                 };
         };
            
@@ -92,7 +40,7 @@
 
                 default_layer {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-display-name = "Base"                      ;
+display-name = "BASE"                      ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 //             ┃     Q     ┃     W     ┃     E     ┃     R     ┃     T     ┃   ┃     Y     ┃     U     ┃     I     ┃     O     ┃     P     ┃   
@@ -101,22 +49,22 @@ display-name = "Base"                      ;
 // ┏━━━━━━━━━━━┣━━━━━━━━━━━┣━━━━━━━━━━━┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫━━━━━━━━━━━┓
 // ┃  td_lp    ┃     Z     ┃     X     ┃   C/COPY  ┃  V/PASTE  ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃   td_rp   ┃
 // ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃   LCTRL   ┃    LALT   ┃   SPACE   ┃   ┃    BSPC   ┃    RALT   ┃    SYS    ┃
+//                                     ┃   LCTRL   ┃    LALT   ┃   SPACE   ┃   ┃    BSPC   ┃    RGUI   ┃    SYS    ┃
 //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
  bindings = <
 // ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
 
                   &kp Q       &kp W       &kp E       &kp R       &kp T           &kp Y       &kp U       &kp I       &kp O       &kp P       
                   &kp A       &kp S       &kp D       &kp F       &kp G           &kp H       &kp J       &kp K       &kp L       &kp SEMI    
-      &td_lp      &kp Z       &kp X       &c_cpy      &v_pst      &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp SLASH   &td_rp
-                                          &kp LCTRL   &kp LALT    &lt NUM SPACE   &lt SYM BSPC &kp RALT   &tog SYS   
+      &td_lp      &kp Z       &kp X       &kp C       &kp V       &kp B           &kp N       &kp M       &kp COMMA   &kp DOT     &kp SLASH   &td_rp
+                                          &kp LCTRL   &kp LALT    &lt_spc NUM SPACE   &lt SYM BSPC &kp RGUI   &tog SYS   
                         >;
                 };
 
 
                 num {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-display-name = "num"                      ;
+display-name = "NUM"                      ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 //             ┃   trans   ┃     N7    ┃     N8    ┃     N9    ┃   trans   ┃   ┃   trans   ┃   trans   ┃     UP    ┃   trans   ┃   trans   ┃   
@@ -133,14 +81,14 @@ display-name = "num"                      ;
                   &trans      &kp N7      &kp N8      &kp N9      &kp STAR        &trans      &trans      &kp UP      &trans      &trans     
                   &kp N0      &kp N4      &kp N5      &kp N6      &kp MINUS       &trans      &kp LEFT    &kp DOWN    &kp RIGHT   &trans  
       &trans      &trans      &kp N1      &kp N2      &kp N3      &kp PLUS        &trans      &trans      &trans      &trans      &trans      &trans  
-                                          &trans      &kp KP_DOT  &trans          &trans      &trans      &trans   
+                                          &trans      &kp KP_DOT  &trans          &kp DEL     &trans      &trans   
                         >;
                 };
 
 
                 sym {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-display-name = "sym"                      ;
+display-name = "SYM"                      ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 //             ┃   trans   ┃     !     ┃     @     ┃     #     ┃   trans   ┃   ┃   trans   ┃     (     ┃     )     ┃   trans   ┃   trans   ┃   
@@ -164,7 +112,7 @@ display-name = "sym"                      ;
 
                 sys {
 // ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-display-name = "sys"                      ;
+display-name = "SYS"                      ;
 // ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 //             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
 //             ┃     Q     ┃     W     ┃   BRI_DN  ┃   BRI_UP  ┃     T     ┃   ┃     Y     ┃     U     ┃     I     ┃     O     ┃     P     ┃   
@@ -181,30 +129,7 @@ display-name = "sys"                      ;
                   &trans      &trans      &kp C_BRI_DN &kp C_BRI_UP &trans          &trans      &trans      &trans      &trans      &trans     
                   &trans      &trans      &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE      &trans      &trans      &trans      &trans      &trans  
       &trans      &trans      &trans      &trans       &trans       &trans          &trans      &trans      &trans      &trans      &trans      &trans  
-                                          &trans       &trans       &trans          &trans      &tog MAC    &tog DEFAULT  
-                        >;
-                };
-
-                mac {
-// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-display-name = "Mac"                       ;
-// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-//             ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓   ┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┓
-//             ┃     Q     ┃     W     ┃     E     ┃     R     ┃     T     ┃   ┃     Y     ┃     U     ┃     I     ┃     O     ┃     P     ┃   
-//             ┣━━━━━━━━━━━┣━━━━━━━━━━━┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┫
-//             ┃     A     ┃     S     ┃     D     ┃     F     ┃     G     ┃   ┃     H     ┃     J     ┃     K     ┃     L     ┃     ;     ┃    
-// ┏━━━━━━━━━━━┣━━━━━━━━━━━┣━━━━━━━━━━━┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫━━━━━━━━━━━┓
-// ┃  td_lp    ┃     Z     ┃     X     ┃   C/COPY  ┃  V/PASTE  ┃     B     ┃   ┃     N     ┃     M     ┃     ,     ┃     .     ┃     /     ┃   td_rp   ┃
-// ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┫   ┣━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━╋━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
-//                                     ┃   LCTRL   ┃    LALT   ┃   SPACE   ┃   ┃    BSPC   ┃    RALT   ┃    SYS    ┃
-//                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
- bindings = <
-// ╷           ╷           ╷           ╷           ╷           ╷           ╷   ╷           ╷           ╷           ╷           ╷           ╷           ╷
-
-                  &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans       
-                  &trans      &trans      &trans      &trans      &trans          &trans      &trans      &trans      &trans      &trans    
-      &trans      &trans      &trans      &c_cpy_mac  &v_pst_mac  &trans          &trans      &trans      &trans      &trans      &trans      &trans
-                                          &trans      &trans      &trans          &trans      &trans      &trans   
+                                          &trans       &trans       &trans          &trans      &trans      &to DEFAULT  
                         >;
                 };
         };
